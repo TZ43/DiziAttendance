@@ -16,7 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Attendance import views as attdenceView
+from django.contrib.auth.views import LoginView, LogoutView
+
 urlpatterns = [
+    path('', attdenceView.Dashboard.as_view()),
     path('admin/', admin.site.urls),
     path('liveSync/', attdenceView.index,name="liveSync"),
+    path('test/', attdenceView.test,name="test"),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/',LogoutView.as_view(
+                    template_name='registration/logged_out.html',
+                    next_page=None),name = 'logout')
+
 ]

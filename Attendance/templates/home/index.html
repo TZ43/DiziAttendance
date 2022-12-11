@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono&subset=greek,cyrillic"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="/static/assets/css/custom.css"/>
+        <script src="/static/assets/js/custom.js"></script>
+    </head>
+<body>
+
+
+<div class="root_container">
+    <div class="header">
+        <h2 class="txt_center">Member and Guest Management System</h2>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        <div class="contin_main">
+            <div class=" contin">
+                <div class="image_dv">
+                    <img aria-colcount="img" src="/static/assets/images/bg-images/test.png" class="mem_img" />
+                </div>        
+            </div>    
+            <div class="contin">
+                <div class="infra">
+                    <div class="info_lbl">Name:</div>
+                    <div class="info">Sohel Rana</div>
+                </div>
+                <div class="infra">
+                    <div class="info_lbl">Membership Number:</div>
+                    <div class="info">XYZ</div>
+                </div>
+                <div class="infra">
+                    <div class="info_lbl">Category:</div>
+                    <div class="info">Single, Family, Associate</div>
+                </div>
+                <div class="infra">
+                    <div class="info_lbl">Organisation:</div>
+                    <div class="info">Dizit</div>
+                </div>
+                <div class="infra">
+                    <div class="info_lbl">Start Date:</div>
+                    <div class="info">07/11/2022</div>
+                </div>
+                <div class="infra">
+                    <div class="info_lbl">Number of Guest In:</div>
+                    <div class="info"><input min="0" minlength="1" value="0" name="numberofGust" id="numberofGust" type="number"/></div>
+                </div>
+                <div class="infra">
+                <button type="button" id="add_guest">Add Guest</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="Guest_details">
+            <h2 class="txt_center"> Guest Details</h2>
+            <div class="contin_root">           
+                <table >
+                    <tr>
+                    <th>Date</th>
+                    <th>Guest Name/Card Number</th>
+                    <th>ID Checked</th>
+                    </tr>
+                    <tbody id="tblgust"></tbody>
+                </table>
+            </div>
+            <button id="save_gust">Save</button>
+
+        </div>
+
+    </form>
+
+<style>
+</style>
+<!-- <input id="chat-message-input" type="text" size="100"><br>
+<input id="chat-message-submit" type="button" value="Send"> -->
+<script>
+    // const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    const roomName ="chat_test_channel";
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        console.log(data)
+        // document.querySelector('#chat-log').value += (data.message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    // document.querySelector('#chat-message-input').focus();
+    // document.querySelector('#chat-message-input').onkeyup = function(e) {
+    //     if (e.keyCode === 13) {  // enter, return
+    //         document.querySelector('#chat-message-submit').click();
+    //     }
+    // };
+
+    // document.querySelector('#chat-message-submit').onclick = function(e) {
+    //     const messageInputDom = document.querySelector('#chat-message-input');
+    //     const message = messageInputDom.value;
+    //     chatSocket.send(JSON.stringify({
+    //         'message': message
+    //     }));
+    //     messageInputDom.value = '';
+    // };
+</script>
+
+
+</div>
+</body>
+</html>
+
